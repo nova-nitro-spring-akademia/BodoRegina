@@ -4,7 +4,7 @@ import java.util.List;
 
 public class CompositeFood extends Food {
 
-    private List<Food> containedFood;
+    private final List<Food> containedFood;
 
     public CompositeFood(List<Food> containedFood) {
         super(0);
@@ -15,7 +15,10 @@ public class CompositeFood extends Food {
 
     @Override
     public int getFeedingValue() {
-        int nutritionalValue = containedFood.stream().map( food -> getFeedingValue()).reduce(0, Integer::sum);
+        int nutritionalValue = 0;// containedFood.stream().map( food -> getFeedingValue()).reduce(0, Integer::sum);
+        for (Food food : containedFood) {
+            nutritionalValue += food.getFeedingValue();
+        }
         super.setNutritionalValue(nutritionalValue);
         return nutritionalValue;
     }

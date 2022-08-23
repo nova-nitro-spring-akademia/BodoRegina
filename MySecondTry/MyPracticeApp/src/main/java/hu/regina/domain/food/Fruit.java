@@ -2,7 +2,7 @@ package hu.regina.domain.food;
 
 public class Fruit extends Food {
 
-    private int sugarLevel;
+    private final int sugarLevel;
 
     public Fruit(int nutritionalValue, int sugarLevel) {
         super(nutritionalValue);

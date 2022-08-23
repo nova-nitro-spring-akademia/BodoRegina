@@ -15,7 +15,6 @@ public class Rabbit {
 
     private Home home;
 
-
     private int levelOfFullness;
 
     private final MyEatingStrategy eatingStrategy;
@@ -33,7 +32,7 @@ public class Rabbit {
             levelOfFullness = 100;
         }
 
-        System.out.printf("The rabbit is " + levelOfFullness + "% full.");
+        System.out.println("The rabbit is " + levelOfFullness + "% full.");
 
     }
 

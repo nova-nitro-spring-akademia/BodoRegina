@@ -13,6 +13,9 @@ public class RabbitEntity {
 
     private int levelOfFullness;
 
+    @ManyToMany
+    private List<RabbitEntity> friends;
+
     @OneToOne
     private HomeEntity home;
 
@@ -56,5 +59,13 @@ public class RabbitEntity {
 
     public void setEatingStrategy(String eatingStrategy) {
         this.eatingStrategy = eatingStrategy;
+    }
+
+    public List<RabbitEntity> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(List<RabbitEntity> friends) {
+        this.friends = friends;
     }
 }

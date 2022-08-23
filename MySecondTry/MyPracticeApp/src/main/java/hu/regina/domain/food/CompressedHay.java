@@ -2,7 +2,7 @@ package hu.regina.domain.food;
 
 public class CompressedHay extends Food {
 
-    private int fiberLevel;
+    private final int fiberLevel;
 
     public CompressedHay(int nutritionalValue, int fiberLevel) {
         super(nutritionalValue);
