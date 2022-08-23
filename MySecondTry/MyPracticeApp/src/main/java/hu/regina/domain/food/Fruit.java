@@ -1,12 +1,16 @@
-package hu.regina.domain;
+package hu.regina.domain.food;
 
 public class Fruit extends Food {
 
-    int sugarLevel;
+    private int sugarLevel;
 
+    public Fruit(int nutritionalValue, int sugarLevel) {
+        super(nutritionalValue);
+        this.sugarLevel = sugarLevel;
+    }
 
     @Override
     public int getFeedingValue() {
-        return 0;
+        return nutritionalValue-sugarLevel;
     }
 }

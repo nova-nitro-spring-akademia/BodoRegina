@@ -10,9 +10,12 @@ import org.springframework.stereotype.Component;
 public interface HomeEntityMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    @Mapping(target = "name", source = "name")
+    @Mapping(target = "id", source = "id")
+    @Mapping(target = "location", source = "location")
     HomeEntity homeToHomeEntity(Home home);
 
+    @Mapping(target = "id", source = "id")
+    @Mapping(target = "location", source = "location")
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Home homeEntityToHome(HomeEntity homeEntity);
 

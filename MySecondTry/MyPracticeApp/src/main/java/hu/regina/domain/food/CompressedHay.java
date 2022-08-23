@@ -1,11 +1,16 @@
-package hu.regina.domain;
+package hu.regina.domain.food;
 
 public class CompressedHay extends Food {
 
-    int fiberLevel;
+    private int fiberLevel;
+
+    public CompressedHay(int nutritionalValue, int fiberLevel) {
+        super(nutritionalValue);
+        this.fiberLevel = fiberLevel;
+    }
 
     @Override
     public int getFeedingValue() {
-        return 0;
+        return super.nutritionalValue + fiberLevel;
     }
 }

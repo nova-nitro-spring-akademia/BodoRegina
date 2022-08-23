@@ -1,27 +1,27 @@
-package hu.regina.mapper;
+package hu.regina.domain.eatingstrategy;
 
-import hu.regina.domain.eatingstrategy.EatingStrategy;
-import hu.regina.domain.eatingstrategy.FatRabbitEatingStrategy;
-import hu.regina.domain.eatingstrategy.NormalRabbitEatingStrategy;
+import hu.regina.domain.food.Food;
 
 public enum MyEatingStrategy {
 
     FAT_RABBIT_STRATEGY{
         @Override
-        EatingStrategy execute() {
+        public int execute(Food f) {
             System.out.println("Executing fat");
-            return new FatRabbitEatingStrategy();
+            FatRabbitEatingStrategy fatRabbitEatingStrategy = new FatRabbitEatingStrategy();
+            return fatRabbitEatingStrategy.eatFood(f);
         }
     },
 
     NORMAL_RABBIT_STRATEGY{
         @Override
-        EatingStrategy execute() {
+        public int execute(Food f) {
             System.out.println("Executing normal");
-            return new NormalRabbitEatingStrategy();
+            NormalRabbitEatingStrategy normalRabbitEatingStrategy = new NormalRabbitEatingStrategy();
+            return normalRabbitEatingStrategy.eatFood(f);
         }
     };
 
-    public abstract EatingStrategy execute();
+    public abstract int execute(Food f);
 }
 
