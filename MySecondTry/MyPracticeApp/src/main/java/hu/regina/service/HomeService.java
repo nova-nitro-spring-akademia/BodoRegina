@@ -6,6 +6,9 @@ import hu.regina.domain.Home;
 import hu.regina.mapper.entitymapper.HomeEntityMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class HomeService {
 
@@ -24,6 +27,32 @@ public class HomeService {
         HomeEntity savedHomeEntity = repository.save(homeEntity);
         return mapper.homeEntityToHome(savedHomeEntity);
 
+    }
+
+    public List<Home> getAll(){
+        return mapper.fromHomeEntityList(repository.findAll());
+    }
+
+    public Home deleteHomeById(int id){
+
+        Optional<HomeEntity> optionalHomeEntity= repository.findById(id);
+        HomeEntity homeEntityToDelete;
+        if (optionalHomeEntity.isPresent()) {
+            homeEntityToDelete = optionalHomeEntity.get();
+            repository.deleteById(id);
+            return mapper.homeEntityToHome(homeEntityToDelete);
+        }
+        return null;
+    }
+
+    public Home findHomeById(int id){
+        Optional<HomeEntity> optionalHomeEntity= repository.findById(id);
+        HomeEntity homeEntity;
+        if (optionalHomeEntity.isPresent()) {
+            homeEntity = optionalHomeEntity.get();
+            return mapper.homeEntityToHome(homeEntity);
+        }
+        return null;
     }
 
 }
