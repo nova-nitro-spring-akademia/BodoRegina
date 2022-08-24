@@ -43,7 +43,7 @@ public class RabbitEntityMapper {
 
         rabbit.setId(rabbitEntity.getId());
         rabbit.setName(rabbitEntity.getName());
-        rabbit.setLevelOfFullness(rabbit.getLevelOfFullness());
+        rabbit.setLevelOfFullness(rabbitEntity.getLevelOfFullness());
 
         if (rabbitEntity.getFriends() != null)
             rabbit.setFriends(this.toRabbitList(rabbitEntity.getFriends()));
