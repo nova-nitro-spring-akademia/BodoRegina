@@ -44,11 +44,11 @@ public class HomeController {
 
     @GetMapping("/getHome/{id}")
     public HomeDTO getHome(@PathVariable int id){
-        Home Home = homeService.findHomeById(id);
-        if (Home == null){
+        Home home = homeService.findHomeById(id);
+        if (home == null){
             throw new InvalidIdExeption("Id cannot be found in repository");
         }
-        return homeDTOMapper.homeToHomeDTO(Home);
+        return homeDTOMapper.homeToHomeDTO(home);
     }
 
     @DeleteMapping("/deleteHome/{id}")
@@ -63,7 +63,13 @@ public class HomeController {
     @PatchMapping("/patchHome/{id}")
     public HomeDTO patchHomeById(@PathVariable int id, @RequestBody HomeDTO newHomeDTO){
         Home newHome = homeDTOMapper.homeDTOToHome(newHomeDTO);
-
+        Home oldHome = homeService.findHomeById(id);
+        if (oldHome == null){
+            throw new InvalidIdExeption("Id cannot be found in repository");
+        }
+        newHome.setId(id);
+        homeService.save(newHome);
+        return homeDTOMapper.homeToHomeDTO(oldHome);
     }
 
 }
