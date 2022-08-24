@@ -6,6 +6,7 @@ import hu.regina.domain.Rabbit;
 import hu.regina.domain.eatingstrategy.MyEatingStrategy;
 import hu.regina.mapper.entitymapper.HomeEntityMapper;
 import hu.regina.mapper.entitymapper.RabbitEntityMapper;
+import hu.regina.service.HomeService;
 import hu.regina.service.RabbitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -22,6 +23,9 @@ public class MyPracticeAppApplication implements CommandLineRunner {
 
 	@Autowired
 	RabbitService rabbitService;
+
+	@Autowired
+	HomeService homeService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(MyPracticeAppApplication.class, args);
@@ -70,8 +74,23 @@ public class MyPracticeAppApplication implements CommandLineRunner {
 		*/
 
 		//Rabbit Service test
+		/*
+		Rabbit rabbit = new Rabbit(MyEatingStrategy.NORMAL_RABBIT_STRATEGY);
+		rabbit.setHome(new Home("Bathroom"));
+		rabbit.setFriends(List.of(new Rabbit(MyEatingStrategy.FAT_RABBIT_STRATEGY),new Rabbit(MyEatingStrategy.NORMAL_RABBIT_STRATEGY)));
+		rabbit.setId(5);
+		rabbit.setName("Bubuka");
+		rabbit.setLevelOfFullness(50);
 
-
+		Rabbit savedRabbit = rabbitService.save(rabbit);
+		System.out.println(rabbit);
+		System.out.println(savedRabbit);
+		 */
+		/*
+		Home home = new Home("blubs");
+		Home savedHome = homeService.save(home);
+		System.out.println(savedHome);
+		 */
 
 
 	}

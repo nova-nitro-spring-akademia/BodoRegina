@@ -36,8 +36,10 @@ public class RabbitEntityMapper {
     public Rabbit rabbitEntityToRabbit(RabbitEntity rabbitEntity){
 
         String strategyStr = rabbitEntity.getEatingStrategy();
+        Rabbit rabbit = new Rabbit(null);
 
-        Rabbit rabbit = new Rabbit(MyEatingStrategy.valueOf(strategyStr));
+        if(strategyStr != null)
+            rabbit.setEatingStrategy(MyEatingStrategy.valueOf(strategyStr));
 
         rabbit.setId(rabbitEntity.getId());
         rabbit.setName(rabbitEntity.getName());

@@ -17,7 +17,7 @@ public class Rabbit {
 
     private int levelOfFullness;
 
-    private final MyEatingStrategy eatingStrategy;
+    private MyEatingStrategy eatingStrategy;
 
     public Rabbit(MyEatingStrategy eatingStrategy) {
         this.eatingStrategy = eatingStrategy;
@@ -80,4 +80,7 @@ public class Rabbit {
         return eatingStrategy;
     }
 
+    public void setEatingStrategy(MyEatingStrategy eatingStrategy) {
+        this.eatingStrategy = eatingStrategy;
+    }
 }

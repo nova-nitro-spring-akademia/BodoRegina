@@ -1,22 +1,28 @@
 package hu.regina.data.entities;
 
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class RabbitEntity {
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private String name;
 
     private int levelOfFullness;
 
+    //(fetch = FetchType.EAGER)
+
     @ManyToMany
+    @Nullable
     private List<RabbitEntity> friends;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @Nullable
     private HomeEntity home;
 
     private String eatingStrategy;

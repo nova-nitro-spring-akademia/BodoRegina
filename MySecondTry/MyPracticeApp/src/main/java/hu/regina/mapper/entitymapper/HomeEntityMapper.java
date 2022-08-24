@@ -6,7 +6,6 @@ import org.mapstruct.*;
 import org.springframework.stereotype.Component;
 
 @Mapper(componentModel = "spring")
-@Component
 public interface HomeEntityMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
