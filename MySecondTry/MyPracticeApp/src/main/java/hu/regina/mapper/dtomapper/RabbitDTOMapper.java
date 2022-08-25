@@ -1,10 +1,8 @@
 package hu.regina.mapper.dtomapper;
 
 import hu.regina.controller.dtos.RabbitDTO;
-import hu.regina.data.entities.RabbitEntity;
 import hu.regina.domain.Rabbit;
 import hu.regina.domain.eatingstrategy.MyEatingStrategy;
-import hu.regina.mapper.entitymapper.HomeEntityMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

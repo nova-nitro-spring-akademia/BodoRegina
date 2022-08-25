@@ -1,7 +1,6 @@
 package hu.regina.mapper.dtomapper;
 
 import hu.regina.controller.dtos.HomeDTO;
-import hu.regina.data.entities.HomeEntity;
 import hu.regina.domain.Home;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;

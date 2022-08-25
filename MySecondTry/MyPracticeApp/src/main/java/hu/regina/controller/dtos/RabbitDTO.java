@@ -1,10 +1,5 @@
 package hu.regina.controller.dtos;
 
-import hu.regina.domain.Home;
-import hu.regina.domain.Rabbit;
-import hu.regina.domain.eatingstrategy.MyEatingStrategy;
-import hu.regina.domain.food.Food;
-
 import java.util.List;
 
 public class RabbitDTO {

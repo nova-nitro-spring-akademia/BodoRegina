@@ -8,11 +8,19 @@
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
 </head>
+
 <body>
-<h1>Welcome to the home repo!</h1>
-<a th:href="form" > Save a new home!</a>
-<a th:href="form" > Save a new home!</a>
-<a th:href="form" > Save a new home!</a>
-<a th:href="form" > Save a new home!</a>
+
+<ul  >
+  <li th:each="home: ${homes}" >
+    <span th:text="${home.getLocation()}" />
+    <a th:href="'/getOneHome/'+${home.getId}" > Edit</a>
+    <a th:href="'/homeDeleteQuestion/'+${home.getId}" > Delete</a>
+  </li>
+</ul>
+
+<a th:href="/home" > Back</a>
+
+
 </body>
 </html>
