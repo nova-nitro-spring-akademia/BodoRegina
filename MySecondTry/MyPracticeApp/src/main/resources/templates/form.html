@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Az Awesome Form</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<h2>Hello Thymeleaf!</h2>
+
+<form action="#" th:action="@{/api/saveHome}" th:object="${homeDTO}" method="post">
+    <span>Save a home to the database</span>
+    <table border="1">
+        <tr>
+            <td>Location</td>
+            <td><input type="text" th:field="*{location}" /></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+</form>
+<a th:href="home" > Back</a>
+
+</body>
+</html>

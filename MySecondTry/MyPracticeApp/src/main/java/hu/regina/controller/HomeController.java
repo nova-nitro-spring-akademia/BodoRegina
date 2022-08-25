@@ -7,11 +7,13 @@ import hu.regina.mapper.dtomapper.HomeDTOMapper;
 import hu.regina.service.HomeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/api")
 public class HomeController {
 
@@ -33,9 +35,10 @@ public class HomeController {
     }
 
     @PostMapping("/saveHome")
-    public HomeDTO saveHome(@RequestBody HomeDTO homeDTO){
+    public String saveHome(@ModelAttribute HomeDTO homeDTO, Model model){
         Home homeToSave = homeDTOMapper.homeDTOToHome(homeDTO);
-        return homeDTOMapper.homeToHomeDTO(homeService.save(homeToSave));
+        homeService.save(homeToSave);
+        return "homeIndex";
     }
 
     @GetMapping("/getAllHomes")

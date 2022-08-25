@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class RabbitController {
 
     private RabbitService rabbitService;
@@ -75,6 +76,5 @@ public class RabbitController {
         rabbitService.save(newRabbit);
         return rabbitDTOMapper.rabbitToRabbitDTO(oldRabbit);
     }
-
 
 }
