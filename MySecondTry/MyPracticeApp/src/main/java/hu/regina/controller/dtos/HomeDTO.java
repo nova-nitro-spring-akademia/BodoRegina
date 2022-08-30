@@ -1,10 +1,17 @@
 package hu.regina.controller.dtos;
 
 
+import hu.regina.validation.UniqueHomeID;
+
+import javax.validation.constraints.NotBlank;
+
 public class HomeDTO {
 
 
+    @UniqueHomeID
     private int id;
+
+    @NotBlank
     private String location;
 
 

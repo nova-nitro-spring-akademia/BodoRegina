@@ -4,11 +4,14 @@ import hu.regina.controller.dtos.HomeDTO;
 import hu.regina.domain.Home;
 import hu.regina.mapper.dtomapper.HomeDTOMapper;
 import hu.regina.service.HomeService;
-import org.springframework.boot.Banner;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -23,9 +26,15 @@ public class HomeFormController {
         this.homeService = homeService;
     }
 
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    ResponseEntity<String> handleConstraintViolationException(ConstraintViolationException e) {
+        return new ResponseEntity<>("not valid due to validation error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
     @GetMapping("/home")
     public String showHome(){
-        return "homePages/homeIndex";
+        return "/homePages/homeIndex";
     }
 
     @GetMapping("/")
@@ -37,11 +46,11 @@ public class HomeFormController {
     public String showForm(Model model){
         HomeDTO homeDTO = new HomeDTO();
         model.addAttribute("homeDTO", homeDTO);
-        return "homePages/form";
+        return "/homePages/form";
     }
 
     @PostMapping("/saveHome")
-    public String saveHome(@ModelAttribute HomeDTO homeDTO, Model model){
+    public String saveHome(@Valid @ModelAttribute HomeDTO homeDTO, Model model){
         Home homeToSave = homeDTOMapper.homeDTOToHome(homeDTO);
         homeService.save(homeToSave);
         return "redirect:/home";
@@ -51,7 +60,7 @@ public class HomeFormController {
     public String listHomes(Model model){
         List<Home> homes = homeService.getAll();
         model.addAttribute("homes",homes);
-        return "homePages/homeListMagic";
+        return "/homePages/homeListMagic";
     }
 
     @GetMapping("/getOneHome/{id}")
@@ -63,7 +72,7 @@ public class HomeFormController {
     }
 
     @GetMapping("/patchHome/{id}")
-    public String patchHome(@ModelAttribute HomeDTO homeDTO,@PathVariable int id, Model model){
+    public String patchHome( @ModelAttribute HomeDTO homeDTO, @PathVariable int id, Model model){
         homeService.deleteHomeById(id);
         homeService.save(homeDTOMapper.homeDTOToHome(homeDTO));
         return "redirect:/homeList";
@@ -72,7 +81,7 @@ public class HomeFormController {
     @GetMapping("/homeDeleteQuestion/{id}")
     public String homeDeleteQuestion(@PathVariable int id, Model model){
         model.addAttribute("id",id);
-        return "homePages/deleteQuestion";
+        return "/homePages/deleteQuestion";
     }
 
     @GetMapping("/deleteHome/{id}")
@@ -83,25 +92,5 @@ public class HomeFormController {
         return "redirect:/homeList";
     }
 
-    /*
-    Redirecting mókák amikről nem beszélünk
-     */
-    /*
-    @GetMapping("homeDeleteQuestion/deleteHome/{id}")
-    public String deleteHomeRedirect(@PathVariable int id){
-        return "redirect:/deleteHome/"+id;
-    }
-
-    @GetMapping("homeDeleteQuestion/homeList")
-    public String deleteHomeBackRedirect(){
-        return "redirect:/homeList";
-    }
-
-    @GetMapping("/getOneHome/homeList")
-    public String redirectToHomeList(){
-        return "redirect:/homeList";
-    }
-
-     */
 
 }
